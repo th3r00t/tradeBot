@@ -20,6 +20,7 @@ class Sanitize():
     def analyse(self, data):
         import csv
         import re
+        import numpy as np
         text_input = re.compile("^([A-Z])")
         y = '[0-9]{4,4}'
         m = '[01-12]{2,2}'
@@ -31,6 +32,6 @@ class Sanitize():
                     pass
                 else:
                     # Work on input data here
-                    print(', '.join(row))
+                    row,columns=row.shape()
             return
         raise FileNotFoundError
