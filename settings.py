@@ -20,4 +20,5 @@ class Settings():
             settings["setup"] = False
             json.dump(settings, self.write_settings())
         else:
+            settings_file.close()
             return settings

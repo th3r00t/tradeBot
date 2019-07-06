@@ -6,7 +6,6 @@ class Sanitize():
     """
     def __init__(self, data):
         self.data = self.analyze(data)
-        return
 
     def input(self, data):
         try:
@@ -35,18 +34,21 @@ class Sanitize():
         with open(data, newline='') as csvfile:
             input = csv.reader(csvfile, delimiter=',')
             cleaned = []
+            i = 0
             for row in input:
+                i = i + 1
                 # Check for header
                 if text_input.match(row[0]):
                     pass
                 else:
                     # Work on input data here
                     _dateTime = self.findDateTime(row)
+                    ## TODO fix row indexes to be in sync
                     _open = row[2]
                     _high = row[3]
-                    _low = row[3]
-                    _close = row[4]
-                    _volume = row[5]
+                    _low = row[4]
+                    _close = row[5]
+                    _volume = row[6]
                     datetime = _dateTime[0]+'-'+_dateTime[1]+'-'+_dateTime[2]+'.'+_dateTime[3]
                     key = time.mktime(time.strptime(datetime, "%Y-%m-%d.%H:%M"))
                     cleaned.append([key, _open, _high, _low, _close, _volume])

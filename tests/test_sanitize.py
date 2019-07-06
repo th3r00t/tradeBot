@@ -8,7 +8,7 @@ class Test_Sanitize(unittest.TestCase):
 
     def test_csvfile(self):
         test_case = sanitize
-        csv_file = 'dumps/M5_hist_EURUSD.csv'
+        csv_file = 'dumps/M5_test_EURUSD.csv'
         self.assertRaises(Exception, test_case.Sanitize(csv_file))
 
 
