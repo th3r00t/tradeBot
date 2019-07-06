@@ -28,6 +28,7 @@ class Sanitize():
         import re
         import time
         text_input = re.compile("^([A-Z])")
+        ## TODO Add try block to check whether incoming data is a file
         file = open(data, 'r')
         file = csv.reader(file, delimiter=',')
         ncol=len(next(file)) # Read first line and count columns
@@ -43,7 +44,6 @@ class Sanitize():
                 else:
                     # Work on input data here
                     _dateTime = self.findDateTime(row)
-                    ## TODO fix row indexes to be in sync
                     _open = row[2]
                     _high = row[3]
                     _low = row[4]

@@ -75,9 +75,8 @@ class TradeBot():
                        headers={"Authorization":"Bearer %s"%(token)},
                        params=payload
                       )
-        import pprint
-        pprint.pprint(r.json())
-        
+        return r
+
     def prepare_report(self, pair):
         try:
             pass

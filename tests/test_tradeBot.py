@@ -17,8 +17,15 @@ class Test_TradeBot(unittest.TestCase):
         self.assertRaises(Exception, self.test_case.analyze_history('EURUSD'))
     
     def test_get_external_data(self):
+        import json
         self.test_case = tradeBot.TradeBot()
-        self.assertRaises(Exception, self.test_case.get_external_data('EURUSD'))
+        data_dump = self.test_case.get_external_data('EURUSD')
+        test_file = ('dumps/oanda_data_dump.json')
+        with open (test_file, 'w') as file:
+            json.dump(data_dump.json(), file)
+            file.close() 
+        
+        self.assertNotEqual(data_dump, 0)
 
 if __name__ == '__main__':
     unittest.main()
