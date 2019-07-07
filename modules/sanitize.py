@@ -67,6 +67,7 @@ class Sanitize():
                         datetime = _dateTime[0]+'-'+_dateTime[1]+'-'+_dateTime[2]+'.'+_dateTime[3]
                         key = time.mktime(time.strptime(datetime, "%Y-%m-%d.%H:%M"))
                         cleaned.append([key, _open, _high, _low, _close, _volume])
+                        #TODO Reformat for new storage system
                 return cleaned
         except:
             data = self.stream(data)
@@ -88,5 +89,6 @@ class Sanitize():
                 _c_mid = row[key]['mid']['c']
                 _volume = row['vol']
                 key = time.mktime(time.strptime(_dateTime[0]+'.'+_dateTime[1].split('.')[0], "%Y-%m-%d.%H:%M:%S"))
+                #TODO Format for storage
                 cleaned.append([key, _open, _high, _low, _close, _volume])
             return cleaned

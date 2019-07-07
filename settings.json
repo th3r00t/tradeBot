@@ -1,1 +1,10 @@
-{"setup": false}
+{
+    "setup": false,
+    "sql_cfg":{
+        "user": "scott",
+        "password": "password",
+        "host": "127.0.0.1",
+        "database": "employees",
+        "raise_on_warnings": "True"
+    }
+}
