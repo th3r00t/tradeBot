@@ -67,6 +67,7 @@ class TradeBot():
             pair = pair[:3]+"_"+pair[3:]
         payload = {
             "granularity":"S5",
+            "price":"MBA",
             # "from":"",
             # "to":""
         }

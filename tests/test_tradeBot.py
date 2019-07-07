@@ -3,6 +3,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import tradeBot
+from modules import sanitize
 
 
 class Test_TradeBot(unittest.TestCase):
@@ -17,6 +18,7 @@ class Test_TradeBot(unittest.TestCase):
         self.assertRaises(Exception, self.test_case.analyze_history('EURUSD'))
     
     def test_get_external_data(self):
+        
         import json
         self.test_case = tradeBot.TradeBot()
         data_dump = self.test_case.get_external_data('EURUSD')
@@ -24,7 +26,8 @@ class Test_TradeBot(unittest.TestCase):
         with open (test_file, 'w') as file:
             json.dump(data_dump.json(), file)
             file.close() 
-        
+        data = data_dump.json()
+        self.sanitize = sanitize.Sanitize(data)
         self.assertNotEqual(data_dump, 0)
 
 if __name__ == '__main__':
