@@ -1,10 +1,10 @@
 {
     "setup": false,
     "sql_cfg":{
-        "user": "scott",
-        "password": "password",
+        "user": "tradebot",
+        "password": "tradebot",
         "host": "127.0.0.1",
-        "database": "employees",
-        "raise_on_warnings": "True"
+        "database": "tradebot",
+        "raise_on_warnings": true
     }
 }

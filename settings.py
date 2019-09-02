@@ -4,6 +4,10 @@ import json
 
 class Settings():
 
+
+    def __init__(self):
+        self.setup()
+
     def read_settings(self):
         return open('settings.json', 'r')
 
@@ -12,13 +16,13 @@ class Settings():
 
     def setup(self):
         settings_file = self.read_settings()
-        settings = json.load(self.read_settings())
+        self.settings = json.load(settings_file)
         settings_file.close()
-        if settings["setup"]:
+        if self.settings["setup"]:
             print("Executing First Time Setup")
             # Do initial setup here
             settings["setup"] = False
             json.dump(settings, self.write_settings())
         else:
             settings_file.close()
-            return settings
+            return self

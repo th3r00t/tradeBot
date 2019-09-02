@@ -26,6 +26,10 @@ class Sanitize():
         return
 
     def stream(self, data):
+        """
+        :param data:
+        :return: Array of organized data _ask['o'],_ask['h'],_ask['l'],_ask['c']
+        """
         clean = []
         for row in data['candles']:
             _date = row['time']
@@ -33,6 +37,7 @@ class Sanitize():
             _bid = row['bid']
             _mid = row['mid']
             _vol = row['volume']
+            # TODO arrange streamed data
             _row = {_date:{'ask':_ask,'mid':_mid,'bid':_bid},'vol':_vol}
             clean.append(_row)
         return clean
@@ -75,18 +80,18 @@ class Sanitize():
             for row in data:
                 _dateTime = self.findDateTime(row)
                 key = list(row)[0]
-                _o_ask = row[key]['ask']['o']
-                _h_ask = row[key]['ask']['h']
-                _l_ask = row[key]['ask']['l']
-                _c_ask = row[key]['ask']['c']
-                _o_bid = row[key]['bid']['o']
-                _h_bid = row[key]['bid']['h']
-                _l_bid = row[key]['bid']['l']
-                _c_bid = row[key]['bid']['c']
-                _o_mid = row[key]['mid']['o']
-                _h_mid = row[key]['mid']['h']
-                _l_mid = row[key]['mid']['l']
-                _c_mid = row[key]['mid']['c']
+                _ask_o = row[key]['ask']['o']
+                _ask_h = row[key]['ask']['h']
+                _ask_l = row[key]['ask']['l']
+                _ask_c = row[key]['ask']['c']
+                _bid_o = row[key]['bid']['o']
+                _bid_h = row[key]['bid']['h']
+                _bid_l = row[key]['bid']['l']
+                _bid_c = row[key]['bid']['c']
+                _mid_o = row[key]['mid']['o']
+                _mid_h = row[key]['mid']['h']
+                _mid_l = row[key]['mid']['l']
+                _mid_c = row[key]['mid']['c']
                 _volume = row['vol']
                 key = time.mktime(time.strptime(_dateTime[0]+'.'+_dateTime[1].split('.')[0], "%Y-%m-%d.%H:%M:%S"))
                 #TODO Format for storage

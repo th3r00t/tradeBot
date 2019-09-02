@@ -1,18 +1,20 @@
 from modules import storage, sanitize
+import settings
 import os
 import pandas as pd
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
-import sqlite3
 import sys
 import requests
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+
 class TradeBot():
     """ Main Program Class """
+
     def __init__(self):
-        self.storage = storage.Database
+        self.database = storage.Database
         self.sanitize = sanitize
 
     def import_history(self, data):
@@ -38,9 +40,12 @@ class TradeBot():
         if os.path.isfile(data):
             try:
                 cleaned_data = self.sanitize.Sanitize(data)
-                self.storage().insert_history(cleaned_data.data, pair, self.timeframe)
+                self.database().insert_history(cleaned_data.data, pair, self.timeframe)
             except Exception as e:
+                import pprint
+                pprint.pprint(e)
                 raise e
+                
         else:
             print('Invalid File Specified')
             raise FileNotFoundError
@@ -48,7 +53,7 @@ class TradeBot():
     def analyze_history(self, pair):
         try:
             # con = 'storage/neuralnet.db'
-            conn = self.storage()
+            # conn = self.storage()
             df = pd.read_sql("SELECT * FROM %s"%(pair), conn.connection, parse_dates='timestamp', index_col='timestamp')
             df['open'].plot()
             df['high'].plot()

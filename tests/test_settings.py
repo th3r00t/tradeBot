@@ -8,6 +8,7 @@ class Test_Settings(unittest.TestCase):
 
     def test_OpenSettings(self):
         test_case = settings.Settings()
+        print(test_case)
         self.assertRaises(Exception, test_case.setup())
 
 
